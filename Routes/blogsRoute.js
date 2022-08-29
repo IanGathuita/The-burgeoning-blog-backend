@@ -1,10 +1,11 @@
 const {Router} = require('express');
 const {getNewBlogs,getBlogComments,createNewBlog,commentOnBlog, likeBlog, updateBlog, deleteBlog, deleteComment} = require('../Controllers/blogController');
+const {verifyToken} = require('../Middleware/authentication');
 
 
 const blogsRouter = Router();
 
-blogsRouter.get('/new', getNewBlogs);
+blogsRouter.get('/new',verifyToken, getNewBlogs);
 blogsRouter.get('/comments/:id', getBlogComments);
 blogsRouter.post('/newBlog', createNewBlog );
 blogsRouter.post('/comment/:blogId',commentOnBlog);

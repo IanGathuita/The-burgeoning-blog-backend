@@ -3,12 +3,13 @@ const mssql = require('mssql');
 require('dotenv').config();
 const config = require('../Config/config');
 
+
 const getNewBlogs = async(req,res) => {
     await mssql.connect(config);
     const request = new mssql.Request();
     const procResult = await request.execute('dbo.sp_get_blogs');
     console.log(procResult.recordsets[0]);
-    res.status(200).send('Got blogs/blogs ');
+    res.status(200).send(procResult.recordsets[0]);
 };
 
 const getBlogComments = async(req,res) => {

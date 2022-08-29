@@ -1,10 +1,14 @@
 const express = require('express');
 const {blogsRouter} = require('./Routes/blogsRoute');
 const {usersRouter} = require('./Routes/usersRoute');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 require('dotenv').config();
+
+console.log('PAST COOKIE PARSER');
 
 app.use('/blogs',blogsRouter);
 app.use('/users',usersRouter);
